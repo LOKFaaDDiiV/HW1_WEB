@@ -16,7 +16,7 @@ class Bot:
             record = Record(name, phones, birth, email, status, note)
             return self.book.add(record)
         elif action == 'search':
-            InfoOutput("There are following categories: \nName \nPhones \nBirthday \nEmail \nStatus \nNote").output()
+            InfoOutput().output("There are following categories: \nName \nPhones \nBirthday \nEmail \nStatus \nNote")
             category = input('Search category: ')
             pattern = input('Search pattern: ')
             result = (self.book.search(pattern, category))
@@ -24,7 +24,7 @@ class Bot:
                 if account['birthday']:
                     birth = account['birthday'].strftime("%d/%m/%Y")
                     result = "_" * 50 + "\n" + f"Name: {account['name']} \nPhones: {', '.join(account['phones'])} \nBirthday: {birth} \nEmail: {account['email']} \nStatus: {account['status']} \nNote: {account['note']}\n" + "_" * 50
-                    Output(result).output()
+                    Output().output(result)
         elif action == 'edit':
             contact_name = input('Contact name: ')
             parameter = input('Which parameter to edit(name, phones, birthday, status, email, note): ').strip()
@@ -40,10 +40,10 @@ class Bot:
             file_name = input("File name: ")
             return self.book.load(file_name)
         elif action == 'congratulate':
-            Output(self.book.congratulate()).output()
+            Output().output(self.book.congratulate())
         elif action == 'view':
-            Output(self.book).output()
+            Output().output(self.book)
         elif action == 'exit':
             pass
         else:
-            ErrorOutput("There is no such command!").output()
+            ErrorOutput().output("There is no such command!")

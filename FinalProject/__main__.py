@@ -11,7 +11,7 @@ if __name__ == "__main__":
         if action == 'help':
             format_str = str('{:%s%d}' % ('^',20))
             for command in commands:
-                InfoOutput(format_str.format(command)).output()
+                InfoOutput().output(format_str.format(command))
             action = input('>>>').strip().lower()
             bot.handle(action)
             if action in ['add', 'remove', 'edit']:

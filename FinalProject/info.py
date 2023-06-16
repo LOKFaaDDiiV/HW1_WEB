@@ -4,27 +4,25 @@ from abc import ABC, abstractmethod
 
 
 class Abstract(ABC):
-    def __init__(self, text):
-        self.text = text
 
     @abstractmethod
-    def output(self):
+    def output(self, text):
         raise NotImplementedError
 
 
 class Output(Abstract):
-    def output(self):
-        print(self.text)
+    def output(self, text):
+        print(text)
 
 
 class ErrorOutput(Abstract):
-    def output(self):
-        print(f'ERROR: {self.text}')
+    def output(self, text):
+        print(f'ERROR: {text}')
 
 
 class InfoOutput(Abstract):
-    def output(self):
-        print(f'INFO: {self.text}')
+    def output(self, text):
+        print(f'INFO: {text}')
 
 
 class Record:
@@ -80,7 +78,7 @@ class Phone(Field):
                     else:
                         raise ValueError
             except ValueError:
-                ErrorOutput('Incorrect phone number format! Please provide correct phone number format.').output()
+                ErrorOutput().output('Incorrect phone number format! Please provide correct phone number format.')
             else:
                 break
 
@@ -105,7 +103,7 @@ class Birthday(Field):
                 else:
                     raise ValueError
             except ValueError:
-                ErrorOutput('Incorrect date! Please provide correct date format.').output()
+                ErrorOutput().output('Incorrect date! Please provide correct date format.')
 
     def __getitem__(self):
         return self.value
@@ -126,7 +124,7 @@ class Email(Field):
                 else:
                     raise ValueError
             except ValueError:
-                ErrorOutput('Incorrect email! Please provide correct email.').output()
+                ErrorOutput().output('Incorrect email! Please provide correct email.')
 
     def __getitem__(self):
         return self.value
@@ -147,7 +145,7 @@ class Status(Field):
                 else:
                     raise ValueError
             except ValueError:
-                ErrorOutput('There is no such status!').output()
+                ErrorOutput().output('There is no such status!')
 
     def __getitem__(self):
         return self.value

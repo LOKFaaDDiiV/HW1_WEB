@@ -20,7 +20,7 @@ class AddressBook(UserList):
             if account['phones']:
                 new_value = []
                 for phone in account['phones']:
-                    Output(phone).output()
+                    Output().output(phone)
                     if phone:
                         new_value.append(phone)
                 phone = ', '.join(new_value)
@@ -101,7 +101,7 @@ class AddressBook(UserList):
             elif account[category_new].lower().replace(' ', '') == pattern_new:
                 result.append(account)
         if not result:
-            ErrorOutput('There is no such contact in address book!').output()
+            ErrorOutput().output('There is no such contact in address book!')
         return result
 
     def edit(self, contact_name, parameter, new_value):
@@ -128,9 +128,9 @@ class AddressBook(UserList):
             if contact_name not in names:
                 raise NameError
         except ValueError:
-            ErrorOutput('Incorrect parameter! Please provide correct parameter').output()
+            ErrorOutput().output('Incorrect parameter! Please provide correct parameter')
         except NameError:
-            ErrorOutput('There is no such contact in address book!').output()
+            ErrorOutput().output('There is no such contact in address book!')
         else:
             self.log(f"Contact {contact_name} has been edited!")
             return True
